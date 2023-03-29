@@ -15,37 +15,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.examen.examen_final.entity.Asignatura;
-import com.examen.examen_final.service.IAsignaturaService;
+import com.examen.examen_final.entity.Estudiante;
+import com.examen.examen_final.service.IEstudianteService;
 
 @RestController
-@RequestMapping("/api/asignatura")
+@RequestMapping("/api/estudiante")
 public class AsignaturaController {
 
 	@Autowired
-	IAsignaturaService asignaturaService;
+	IEstudianteService estudianteService;
 
 	@GetMapping("/listar")
-	public ResponseEntity<List<Asignatura>> listarAsignatura() {
-		return new ResponseEntity<>(asignaturaService.findByAll(), HttpStatus.OK);
+	public ResponseEntity<List<Estudiante>> listarEstudiante() {
+		return new ResponseEntity<>(estudianteService.findByAll(), HttpStatus.OK);
 	}
 
 	@PostMapping("/crear")
-	public ResponseEntity<Asignatura> crearDepartamento(@RequestBody Asignatura p) {
-		return new ResponseEntity<>(asignaturaService.save(p), HttpStatus.CREATED);
+	public ResponseEntity<Estudiante> crearEstudiante(@RequestBody Estudiante p) {
+		return new ResponseEntity<>(estudianteService.save(p), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/actualizar/{id}")
-	public ResponseEntity<Asignatura> actualizarDepartamento(@PathVariable Long id, @RequestBody Asignatura p) {
-		Asignatura asig = asignaturaService.findById(id);
-		if (asig == null) {
+	public ResponseEntity<Estudiante> actualizarEstudiante(@PathVariable Long id, @RequestBody Estudiante p) {
+		Estudiante estud = estudianteService.findById(id);
+		if (estud == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
 			try {
-				asig.setNombre(p.getNombre());
-				asig.setN_horas(p.getN_horas());
+				estud.setNombre(p.getNombre());
+				estud.setApellido(p.getApellido());
 
-				return new ResponseEntity<>(asignaturaService.save(p), HttpStatus.OK);
+				return new ResponseEntity<>(estudianteService.save(p), HttpStatus.OK);
 			} catch (DataAccessException e) {
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
@@ -53,8 +53,8 @@ public class AsignaturaController {
 	}
 
 	@DeleteMapping("/eliminar/{id}")
-	public ResponseEntity<Asignatura> eliminarDepartamento(@PathVariable Long id) {
-		asignaturaService.delete(id);
+	public ResponseEntity<Estudiante> eliminarEstudiante(@PathVariable Long id) {
+		estudianteService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

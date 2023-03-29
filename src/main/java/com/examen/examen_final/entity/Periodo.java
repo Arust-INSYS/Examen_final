@@ -24,6 +24,6 @@ public class Periodo implements Serializable {
 	@Id
 	private Long id_periodo;
 	private String periodo;
-	private String year;
+	private Integer year;
     
 }

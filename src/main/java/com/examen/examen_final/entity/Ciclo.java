@@ -26,6 +26,9 @@ public class Ciclo implements Serializable{
 	private String nombre;
 	private String descripcion;
 	
+        // Relaciones
 
+        private Asignatura asignatura;
+        private Carrera carrera;
 	    
 }

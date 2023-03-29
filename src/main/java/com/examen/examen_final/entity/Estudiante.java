@@ -11,22 +11,25 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- *
- * @author Arust
- */
 @Getter
 @Setter
-@Document(collection = "carrera")
+@Document(collection = "estudiante")
 @Data
-public class Carrera implements Serializable{
-    private static final long serialVersionUID = 1L;
+public class Estudiante implements Serializable  {
+    
+private static final long serialVersionUID = 1L;
 	@Id
-	private Long id_carrera;
+	private Long id_estudiante;
 	private String nombre;
-	private String descripcion;
+	private String apellido;
+	private String celular;
+        private String correo;
+        private String dirreccion;
+
+
+	// Relaciones
+	
+	private Ciclo ciclo;
         
-        //Relaciones
-        private Periodo periodo;
     
 }
